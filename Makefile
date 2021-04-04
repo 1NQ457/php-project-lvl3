@@ -28,4 +28,4 @@ test:
 	php artisan test
 
 lint:
-	composer run-script phpcs -- --standard=PSR2 app/ config/ routes/ tests/
+	composer run-script phpcs -- --standard=PSR2 app/ tests/
