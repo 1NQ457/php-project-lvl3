@@ -29,3 +29,9 @@ test:
 
 lint:
 	composer run-script phpcs -- --standard=PSR2 app/ tests/
+
+deploy:
+	git push heroku master
+
+serve:
+	php artisan serve
