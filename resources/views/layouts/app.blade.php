@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
-    <title>@yield('title')</title>
+    <title>Анализатор страниц</title>
 </head>
 <body class="d-flex min-vh-100 flex-column">
     <header>
@@ -17,10 +17,10 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item @yield('page_main')">
                         <a class="nav-link" href="{{ route('urls.create') }}">Главная<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @yield('page_sites')">
                         <a class="nav-link" href="{{ route('urls.index') }}">Сайты</a>
                     </li>
                 </ul>
