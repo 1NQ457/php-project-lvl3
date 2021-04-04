@@ -49,5 +49,5 @@ jobs:
       - name: Run linter
         # Run Linter
         run: make lint
-       - name: Execute tests (Unit and Feature tests) via PHPUnit
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: make test
