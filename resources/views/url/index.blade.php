@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-lg">
     <h1 class="mt-5 mb-3">Сайты</h1>
-    <div class="table-responsive px-5">
+    <div class="table-responsive">
         <table class="table table-bordered text-nowrap">
             <thead>
                 <tr>
