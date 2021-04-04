@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UrlController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UrlController::class, 'create'])
+    ->name('urls.create');
+
+Route::get('/urls', [UrlController::class, 'index'])
+    ->name('urls.index');
+
+Route::post('/urls', [UrlController::class, 'store'])
+    ->name('urls.store');
+
+Route::get('/urls/{id}', [UrlController::class, 'show'])
+    ->name('urls.show');
