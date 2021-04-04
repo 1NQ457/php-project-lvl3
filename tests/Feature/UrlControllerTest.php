@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 
-class ExampleTest extends TestCase
+class UrlControllerTest extends TestCase
 {
     /**
      * A basic test example.
@@ -17,6 +17,7 @@ class ExampleTest extends TestCase
      * @return void
      */
     public $id;
+    public $name;
 
     protected function setUp(): void
     {
@@ -35,6 +36,7 @@ class ExampleTest extends TestCase
             'updated_at' => Carbon::now()
         ];
 
+        $this->name = $name;
         $this->id = DB::table('urls')->insertGetId($url);
     }
 
@@ -54,9 +56,8 @@ class ExampleTest extends TestCase
 
     public function testStore()
     {
-        $response = $this->post(route('urls.store'));
+        $response = $this->post(route('urls.store', ['url' => ['name' => $this->name]]));
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
 
 
         $this->assertDatabaseHas('urls', ['id' => $this->id]);
