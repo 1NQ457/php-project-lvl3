@@ -17,7 +17,6 @@ class UrlCheckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function store($id)
     {
         $url = DB::table('urls')->find($id);
