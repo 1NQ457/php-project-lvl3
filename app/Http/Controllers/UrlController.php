@@ -20,7 +20,6 @@ class UrlController extends Controller
             ->get();
 
         $lastUrlChecks = $lastChecks->keyBy('url_id');
-        dump($lastUrlChecks);
 
         return view('url.index', compact('urls', 'lastUrlChecks'));
     }
