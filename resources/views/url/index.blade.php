@@ -20,14 +20,14 @@
                     <tr>
                         <th scope="row">{{ $url->id }}</th>
                         <td><a href="{{ route('urls.show', $url->id) }}">{{ $url->name }}</a></td>
-                        <td>{{ $url->updated_at }}</td>
-                        <td>###</td>
+                        <td>{{  $lastUrlChecks[$url->id]->last_check ?? null  }}</td>
+                        <td>{{  $lastUrlChecks[$url->id]->status_code ?? null  }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div>
-            {{ $urls->links() }}
+        <div class="d-flex justify-content-left">
+            {!! $urls->links() !!}
         </div>
     </div>
 </div>
