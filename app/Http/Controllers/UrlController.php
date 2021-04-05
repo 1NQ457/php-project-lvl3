@@ -11,7 +11,7 @@ class UrlController extends Controller
 {
     /**
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class UrlController extends Controller
 
     /**
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -61,7 +61,7 @@ class UrlController extends Controller
             ->where('name', $name)
             ->value('id');
 
-        if (!empty($currentId)) {
+        if ($currentId) {
             flash('URL уже существует')->info()->important();
             return redirect()->route('urls.show', ['id' => $currentId]);
         }
@@ -81,14 +81,14 @@ class UrlController extends Controller
     /**
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse|void
      */
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
 
-        if (empty($url)) {
-            return abort(404);
+        if (!$url) {
+            abort(404);
         }
 
         $urlChecks = DB::table('url_checks')
