@@ -9,11 +9,6 @@ use Carbon\Carbon;
 
 class UrlController extends Controller
 {
-    /**
-     * Display a list of urls.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $urls = DB::table('urls')
@@ -29,23 +24,11 @@ class UrlController extends Controller
         return view('url.index', compact('urls', 'lastUrlChecks'));
     }
 
-    /**
-     * Display form for creation url.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('url.create');
     }
 
-    /**
-     * Saves url to database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -65,7 +48,7 @@ class UrlController extends Controller
             ->where('name', $name)
             ->value('id');
 
-        if ($currentId === null) {
+        if (!empty($currentId)) {
             flash('URL уже существует')->info()->important();
             return redirect()->route('urls.show', ['id' => $currentId]);
         }
@@ -82,18 +65,11 @@ class UrlController extends Controller
         return redirect()->route('urls.show', ['id' => $newId]);
     }
 
-    /**
-     * Saves url to database.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|void
-     */
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
 
-        if ($url === null) {
+        if (empty($url)) {
             return abort(404);
         }
 

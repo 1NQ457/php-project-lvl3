@@ -17,7 +17,7 @@ class UrlCheckControllerTest extends TestCase
      * @return void
      */
 
-    public int $id;
+    public $id;
 
     protected function setUp(): void
     {
@@ -36,6 +36,7 @@ class UrlCheckControllerTest extends TestCase
             'updated_at' => Carbon::now()
         ];
 
+        $this->name = $name;
         $this->id = DB::table('urls')->insertGetId($url);
     }
 

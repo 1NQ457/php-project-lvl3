@@ -13,15 +13,15 @@ class UrlCheckController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param int $id
+     * @var int $id
      *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|void
+     * @return \Illuminate\Http\Response
      */
     public function store($id)
     {
         $url = DB::table('urls')->find($id);
 
-        if ($url === null) {
+        if ($url == null) {
             return abort(404);
         }
 
@@ -36,22 +36,22 @@ class UrlCheckController extends Controller
 
         $document = new Document($bodyHtml);
 
-        $h1 = null;
-
         if ($document->has('h1')) {
             $h1 = $document->first('h1')->text();
+        } else {
+            null;
         }
-
-        $keywords = null;
 
         if ($document->has('meta[name="keywords"]')) {
             $keywords = $document->first('meta[name="keywords"]')->getAttribute('content');
+        } else {
+            $keywords = null;
         }
-
-        $description = null;
 
         if ($document->has('meta[name="description"]')) {
             $description = $document->first('meta[name="description"]')->getAttribute('content');
+        } else {
+            $description = null;
         }
 
         $urlChecks = [
