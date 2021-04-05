@@ -39,7 +39,7 @@ class UrlCheckControllerTest extends TestCase
         $this->id = DB::table('urls')->insertGetId($url);
     }
 
-    public function testStore(): void
+    public function testStore()
     {
         Http::fake(function (): object {
             $body = '<h1>Test h1</h1>

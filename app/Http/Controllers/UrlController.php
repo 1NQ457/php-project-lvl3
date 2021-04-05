@@ -87,7 +87,7 @@ class UrlController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|void
      */
     public function show($id)
     {
