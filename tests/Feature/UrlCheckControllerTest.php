@@ -19,8 +19,6 @@ class UrlCheckControllerTest extends TestCase
 
     public $id;
 
-    public $name;
-
     protected function setUp(): void
     {
         parent::setUp();
