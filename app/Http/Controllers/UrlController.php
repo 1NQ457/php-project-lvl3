@@ -61,7 +61,7 @@ class UrlController extends Controller
             ->where('name', $name)
             ->value('id');
 
-        if ($currentId) {
+        if ($currentId !== null) {
             flash('URL уже существует')->info()->important();
             return redirect()->route('urls.show', ['id' => $currentId]);
         }
@@ -87,7 +87,7 @@ class UrlController extends Controller
     {
         $url = DB::table('urls')->find($id);
 
-        if (!$url) {
+        if ($url == null) {
             abort(404);
         }
 
