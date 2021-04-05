@@ -39,7 +39,7 @@ class UrlController extends Controller
 
     /**
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return object
      */
     public function store(Request $request)
     {
