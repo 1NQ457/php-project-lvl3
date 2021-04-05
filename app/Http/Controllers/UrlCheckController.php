@@ -20,7 +20,7 @@ class UrlCheckController extends Controller
         $url = DB::table('urls')->find($id);
 
         if ($url == null) {
-            return abort(404);
+            abort(404);
         }
 
         try {
@@ -34,13 +34,9 @@ class UrlCheckController extends Controller
 
         $document = new Document($bodyHtml);
 
-        $h1 = $document->has('h1') ? $document->first('h1')->text() : null;
-        $keywords = $document->has('meta[name="keywords"]')
-            ? $document->first('meta[name="keywords"]')->getAttribute('content')
-            : null;
-        $description = $document->has('meta[name="description"]')
-            ? $document->first('meta[name="description"]')->getAttribute('content')
-            : null;
+        $h1 = optional($document->first('h1'))->text();
+        $keywords = optional($document->first('meta[name="keywords"]'))->getAttribute('content');
+        $description = optional($document->first('meta[name="description"]'))->getAttribute('content');
 
         $urlChecks = [
             'status_code' => $response->status(),
