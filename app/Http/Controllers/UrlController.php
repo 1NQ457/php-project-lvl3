@@ -68,9 +68,4 @@ class UrlController extends Controller
 
         return view('url.show', compact('url'));
     }
-
-    public function delete()
-    {
-        //
-    }
 }
