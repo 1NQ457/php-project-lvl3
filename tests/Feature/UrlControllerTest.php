@@ -55,7 +55,7 @@ class UrlControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testStore(): void
+    public function testStore()
     {
         $response = $this->post(route('urls.store', ['url' => ['name' => $this->name]]));
         $response->assertSessionHasNoErrors();
