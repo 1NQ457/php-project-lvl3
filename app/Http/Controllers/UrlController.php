@@ -9,10 +9,6 @@ use Carbon\Carbon;
 
 class UrlController extends Controller
 {
-    /**
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
         $urls = DB::table('urls')
@@ -28,10 +24,6 @@ class UrlController extends Controller
         return view('url.index', compact('urls', 'lastUrlChecks'));
     }
 
-    /**
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('url.create');
@@ -73,11 +65,6 @@ class UrlController extends Controller
         return redirect()->route('urls.show', ['id' => $newId]);
     }
 
-    /**
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     */
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
