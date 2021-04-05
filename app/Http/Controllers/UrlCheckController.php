@@ -10,11 +10,19 @@ use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @var int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function store($id)
     {
         $url = DB::table('urls')->find($id);
 
-        if (empty($url)) {
+        if ($url == null) {
             return abort(404);
         }
 
@@ -29,14 +37,23 @@ class UrlCheckController extends Controller
 
         $document = new Document($bodyHtml);
 
-        $h1 = $document->has('h1') ? $document->first('h1')->text() : null;
-        $keywords = $document->has('meta[name="keywords"]')
-            ? $document->first('meta[name="keywords"]')->getAttribute('content')
-            : null;
-        $description = $document->has('meta[name="description"]')
-            ? $document->first('meta[name="description"]')->getAttribute('content')
-            : null;
+        if ($document->has('h1')) {
+            $h1 = $document->first('h1')->text();
+        } else {
+            null;
+        }
 
+        if ($document->has('meta[name="keywords"]')) {
+            $keywords = $document->first('meta[name="keywords"]')->getAttribute('content');
+        } else {
+            $keywords = null;
+        }
+
+        if ($document->has('meta[name="description"]')) {
+            $description = $document->first('meta[name="description"]')->getAttribute('content');
+        } else {
+            $description = null;
+        }
 
         $urlChecks = [
             'status_code' => $response->status(),
