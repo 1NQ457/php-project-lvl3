@@ -65,14 +65,6 @@ class UrlController extends Controller
         return redirect()->route('urls.show', ['id' => $newId]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @var int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
