@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
@@ -24,7 +25,24 @@ class UrlCheckController extends Controller
             return redirect()->route('urls.show', $url->id);
         }
 
+        $bodyHtml = $response->body();
+
+        $document = new Document($bodyHtml);
+
+        $h1 = $document->has('h1') ? $document->first('h1')->text() : null;
+        $keywords = $document->has('meta[name="keywords"]')
+            ? $document->first('meta[name="keywords"]')->getAttribute('content')
+            : null;
+        $description = $document->has('meta[name="description"]')
+            ? $document->first('meta[name="description"]')->getAttribute('content')
+            : null;
+
+
         $urlChecks = [
+            'status_code' => $response->status(),
+            'h1' => $h1,
+            'keywords' => $keywords,
+            'description' =>  $description,
             'url_id' => $url->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

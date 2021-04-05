@@ -42,12 +42,25 @@ class UrlCheckControllerTest extends TestCase
 
     public function testStore()
     {
+        Http::fake(function () {
+            $body = '<h1>Test h1</h1>
+            <meta name="description" content="Test description">
+            <meta name="keywords" content="test, keywords">';
+
+            return Http::response($body, 200);
+        });
+
         $url = DB::table('urls')->find($this->id);
 
         $response = $this->post(route('urls.checks.store', $url->id));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
-        $this->assertDatabaseHas('url_checks', ['url_id' => $url->id]);
+        $this->assertDatabaseHas('url_checks', [
+            'url_id' => $url->id,
+            'h1' => 'Test h1',
+            'description' => 'Test description',
+            'keywords' => 'test, keywords'
+        ]);
     }
 }

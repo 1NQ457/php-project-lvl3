@@ -37,13 +37,21 @@
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Последняя проверка</th>
+                <th scope="col">Код ответа</th>
+                <th scope="col">h1</th>
+                <th scope="col">keywords</th>
+                <th scope="col">description</th>
+                <th scope="col">Дата создания</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($urlChecks as $check)
                     <tr>
                         <th scope="row">{{ $check->id }}</th>
+                        <td>{{ $check->status_code }}</td>
+                        <td>{{ $check->h1 }}</td>
+                        <td>{{ $check->keywords }}</td>
+                        <td>{{ $check->description }}</td>
                         <td>{{ $check->updated_at }}</td>
                     </tr>
                 @endforeach
