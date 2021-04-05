@@ -16,9 +16,9 @@ class UrlControllerTest extends TestCase
      *
      * @return void
      */
-    public $id;
+    public int $id;
 
-    public $name;
+    public string $name;
 
     protected function setUp(): void
     {
@@ -41,21 +41,21 @@ class UrlControllerTest extends TestCase
         $this->id = DB::table('urls')->insertGetId($url);
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $response = $this->get(route('urls.index'));
 
         $response->assertOk();
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $response = $this->get(route('urls.create'));
 
         $response->assertOk();
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $response = $this->post(route('urls.store', ['url' => ['name' => $this->name]]));
         $response->assertSessionHasNoErrors();
@@ -65,7 +65,7 @@ class UrlControllerTest extends TestCase
         $this->assertDatabaseHas('urls', ['id' => $this->id]);
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $response = $this->get(route('urls.show', $this->id));
 

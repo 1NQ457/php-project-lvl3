@@ -17,7 +17,7 @@ class UrlCheckControllerTest extends TestCase
      * @return void
      */
 
-    public $id;
+    public int $id;
 
     protected function setUp(): void
     {
@@ -36,13 +36,12 @@ class UrlCheckControllerTest extends TestCase
             'updated_at' => Carbon::now()
         ];
 
-        $this->name = $name;
         $this->id = DB::table('urls')->insertGetId($url);
     }
 
-    public function testStore()
+    public function testStore(): void
     {
-        Http::fake(function () {
+        Http::fake(function (): object {
             $body = '<h1>Test h1</h1>
             <meta name="description" content="Test description">
             <meta name="keywords" content="test, keywords">';
