@@ -82,13 +82,6 @@ class UrlController extends Controller
         return redirect()->route('urls.show', ['id' => $newId]);
     }
 
-    /**
-     * Saves url to database.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|void
-     */
     public function show($id)
     {
         $url = DB::table('urls')->find($id);

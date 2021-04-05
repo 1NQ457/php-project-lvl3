@@ -41,7 +41,7 @@ class UrlCheckControllerTest extends TestCase
 
     public function testStore()
     {
-        Http::fake(function (): object {
+        Http::fake(function () {
             $body = '<h1>Test h1</h1>
             <meta name="description" content="Test description">
             <meta name="keywords" content="test, keywords">';

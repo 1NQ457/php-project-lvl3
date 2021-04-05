@@ -15,7 +15,7 @@ class UrlCheckController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|void
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     public function store($id)
     {
