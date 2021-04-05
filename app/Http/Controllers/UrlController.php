@@ -9,6 +9,10 @@ use Carbon\Carbon;
 
 class UrlController extends Controller
 {
+    /**
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $urls = DB::table('urls')
@@ -24,11 +28,20 @@ class UrlController extends Controller
         return view('url.index', compact('urls', 'lastUrlChecks'));
     }
 
+    /**
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('url.create');
     }
 
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -65,6 +78,11 @@ class UrlController extends Controller
         return redirect()->route('urls.show', ['id' => $newId]);
     }
 
+    /**
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $url = DB::table('urls')->find($id);

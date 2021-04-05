@@ -11,11 +11,9 @@ use DiDom\Document;
 class UrlCheckController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
      * @var int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\Response|void
      */
     public function store($id)
     {
