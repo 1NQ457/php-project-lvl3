@@ -66,6 +66,11 @@ class UrlController extends Controller
             return abort(404);
         }
 
-        return view('url.show', compact('url'));
+        $urlChecks = DB::table('url_checks')
+            ->where('url_id', $url->id)
+            ->get()
+            ->sortDesc();
+
+        return view('url.show', compact('url', 'urlChecks'));
     }
 }

@@ -2,20 +2,21 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use Faker\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
-use Faker\Factory;
 
-class UrlControllerTest extends TestCase
+class UrlCheckControllerTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic feature test example.
      *
      * @return void
      */
+
     public $id;
 
     public $name;
@@ -41,34 +42,14 @@ class UrlControllerTest extends TestCase
         $this->id = DB::table('urls')->insertGetId($url);
     }
 
-    public function testIndex()
-    {
-        $response = $this->get(route('urls.index'));
-
-        $response->assertOk();
-    }
-
-    public function testCreate()
-    {
-        $response = $this->get(route('urls.create'));
-
-        $response->assertOk();
-    }
-
     public function testStore()
     {
-        $response = $this->post(route('urls.store', ['url' => ['name' => $this->name]]));
+        $url = DB::table('urls')->find($this->id);
+
+        $response = $this->post(route('urls.checks.store', $url->id));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
-
-        $this->assertDatabaseHas('urls', ['id' => $this->id]);
-    }
-
-    public function testShow()
-    {
-        $response = $this->get(route('urls.show', $this->id));
-
-        $response->assertOk();
+        $this->assertDatabaseHas('url_checks', ['url_id' => $url->id]);
     }
 }

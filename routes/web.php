@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UrlController;
+use App\Http\Controllers\UrlCheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,6 @@ Route::post('/urls', [UrlController::class, 'store'])
 
 Route::get('/urls/{id}', [UrlController::class, 'show'])
     ->name('urls.show');
+
+Route::post('/urls/{id}/checks', [UrlCheckController::class, 'store'])
+    ->name('urls.checks.store');
