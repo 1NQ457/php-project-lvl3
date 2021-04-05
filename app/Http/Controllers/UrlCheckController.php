@@ -10,13 +10,6 @@ use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
-    /**
-     * Seves UrlCheck to Database.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|void
-     */
     public function store($id)
     {
         $url = DB::table('urls')->find($id);

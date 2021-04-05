@@ -39,13 +39,6 @@ class UrlController extends Controller
         return view('url.create');
     }
 
-    /**
-     * Saves url to database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
