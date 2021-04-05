@@ -37,10 +37,6 @@ class UrlController extends Controller
         return view('url.create');
     }
 
-    /**
-     *
-     * @return object
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
